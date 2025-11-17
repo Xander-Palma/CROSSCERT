@@ -341,20 +341,586 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/components/ui/button.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/next/image.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/lucide-react/dist/esm/icons/sparkles.js [app-client] (ecmascript) <export default as Sparkles>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$react$2d$three$2d$fiber$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/@react-three/fiber/dist/react-three-fiber.esm.js [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$events$2d$f8cd670d$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__e__as__extend$3e$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/@react-three/fiber/dist/events-f8cd670d.esm.js [app-client] (ecmascript) <export e as extend>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$events$2d$f8cd670d$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__D__as__useFrame$3e$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/@react-three/fiber/dist/events-f8cd670d.esm.js [app-client] (ecmascript) <export D as useFrame>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Gltf$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/@react-three/drei/core/Gltf.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Texture$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/@react-three/drei/core/Texture.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Environment$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/@react-three/drei/core/Environment.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Lightformer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/@react-three/drei/core/Lightformer.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/@react-three/rapier/dist/react-three-rapier.esm.js [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$meshline$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/meshline/dist/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/crosscertv0/node_modules/three/build/three.core.js [app-client] (ecmascript)");
 ;
-var _s = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
 'use client';
 ;
 ;
 ;
 ;
 ;
-function LandingHero() {
+;
+;
+;
+;
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$events$2d$f8cd670d$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__e__as__extend$3e$__["extend"])({
+    MeshLineGeometry: __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$meshline$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MeshLineGeometry"],
+    MeshLineMaterial: __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$meshline$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MeshLineMaterial"]
+});
+function Lanyard({ position = [
+    0,
+    0,
+    18
+], gravity = [
+    0,
+    -40,
+    0
+], fov = 20, transparent = true }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "relative z-0 w-full h-[36rem] lg:h-[44rem] flex justify-center items-center",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$react$2d$three$2d$fiber$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Canvas"], {
+            camera: {
+                position,
+                fov
+            },
+            gl: {
+                alpha: transparent
+            },
+            onCreated: ({ gl })=>gl.setClearColor(new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Color"](0x000000), transparent ? 0 : 1),
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ambientLight", {
+                    intensity: Math.PI
+                }, void 0, false, {
+                    fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                    lineNumber: 33,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Physics"], {
+                    gravity: gravity,
+                    timeStep: 1 / 60,
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Band, {}, void 0, false, {
+                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                        lineNumber: 35,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                    lineNumber: 34,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Environment$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Environment"], {
+                    blur: 0.75,
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Lightformer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Lightformer"], {
+                            intensity: 2,
+                            color: "white",
+                            position: [
+                                0,
+                                -1,
+                                5
+                            ],
+                            rotation: [
+                                0,
+                                0,
+                                Math.PI / 3
+                            ],
+                            scale: [
+                                100,
+                                0.1,
+                                1
+                            ]
+                        }, void 0, false, {
+                            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                            lineNumber: 38,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Lightformer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Lightformer"], {
+                            intensity: 3,
+                            color: "white",
+                            position: [
+                                -1,
+                                -1,
+                                1
+                            ],
+                            rotation: [
+                                0,
+                                0,
+                                Math.PI / 3
+                            ],
+                            scale: [
+                                100,
+                                0.1,
+                                1
+                            ]
+                        }, void 0, false, {
+                            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                            lineNumber: 39,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Lightformer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Lightformer"], {
+                            intensity: 3,
+                            color: "white",
+                            position: [
+                                1,
+                                1,
+                                1
+                            ],
+                            rotation: [
+                                0,
+                                0,
+                                Math.PI / 3
+                            ],
+                            scale: [
+                                100,
+                                0.1,
+                                1
+                            ]
+                        }, void 0, false, {
+                            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                            lineNumber: 40,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Lightformer$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Lightformer"], {
+                            intensity: 10,
+                            color: "white",
+                            position: [
+                                -10,
+                                0,
+                                14
+                            ],
+                            rotation: [
+                                0,
+                                Math.PI / 2,
+                                Math.PI / 3
+                            ],
+                            scale: [
+                                100,
+                                10,
+                                1
+                            ]
+                        }, void 0, false, {
+                            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                            lineNumber: 41,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                    lineNumber: 37,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+            lineNumber: 32,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+        lineNumber: 31,
+        columnNumber: 5
+    }, this);
+}
+_c = Lanyard;
+function Band({ maxSpeed = 50, minSpeed = 0 }) {
     _s();
+    const band = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const fixed = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const j1 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const j2 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const j3 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const card = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const vec = new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"]();
+    const ang = new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"]();
+    const rot = new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"]();
+    const dir = new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"]();
+    const segmentProps = {
+        type: 'dynamic',
+        canSleep: true,
+        colliders: false,
+        angularDamping: 4,
+        linearDamping: 4
+    };
+    const { nodes, materials } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Gltf$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGLTF"])('/lanyardcard/card.glb');
+    const texture = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Texture$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTexture"])('/lanyardcard/lanyard.png');
+    const ccLogo = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Texture$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTexture"])('/crosscert-logo.png');
+    const [curve] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        "Band.useState": ()=>new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CatmullRomCurve3"]([
+                new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"](),
+                new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"](),
+                new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"](),
+                new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"]()
+            ])
+    }["Band.useState"]);
+    const [dragged, drag] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [hovered, hover] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isSmall, setIsSmall] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        "Band.useState": ()=>("TURBOPACK compile-time truthy", 1) ? window.innerWidth < 1024 : "TURBOPACK unreachable"
+    }["Band.useState"]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Band.useEffect": ()=>{
+            const handleResize = {
+                "Band.useEffect.handleResize": ()=>setIsSmall(window.innerWidth < 1024)
+            }["Band.useEffect.handleResize"];
+            window.addEventListener('resize', handleResize);
+            return ({
+                "Band.useEffect": ()=>window.removeEventListener('resize', handleResize)
+            })["Band.useEffect"];
+        }
+    }["Band.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useRopeJoint"])(fixed, j1, [
+        [
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0
+        ],
+        1
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useRopeJoint"])(j1, j2, [
+        [
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0
+        ],
+        1
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useRopeJoint"])(j2, j3, [
+        [
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0
+        ],
+        1
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useSphericalJoint"])(j3, card, [
+        [
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            1.45,
+            0
+        ]
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Band.useEffect": ()=>{
+            if (hovered) {
+                document.body.style.cursor = dragged ? 'grabbing' : 'grab';
+                return ({
+                    "Band.useEffect": ()=>{
+                        document.body.style.cursor = 'auto';
+                    }
+                })["Band.useEffect"];
+            }
+        }
+    }["Band.useEffect"], [
+        hovered,
+        dragged
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$events$2d$f8cd670d$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__D__as__useFrame$3e$__["useFrame"])({
+        "Band.useFrame": (state, delta)=>{
+            if (dragged && typeof dragged !== 'boolean') {
+                vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
+                dir.copy(vec).sub(state.camera.position).normalize();
+                vec.add(dir.multiplyScalar(state.camera.position.length()));
+                [
+                    card,
+                    j1,
+                    j2,
+                    j3,
+                    fixed
+                ].forEach({
+                    "Band.useFrame": (ref)=>ref.current?.wakeUp()
+                }["Band.useFrame"]);
+                card.current?.setNextKinematicTranslation({
+                    x: vec.x - dragged.x,
+                    y: vec.y - dragged.y,
+                    z: vec.z - dragged.z
+                });
+            }
+            if (fixed.current) {
+                ;
+                [
+                    j1,
+                    j2
+                ].forEach({
+                    "Band.useFrame": (ref)=>{
+                        if (!ref.current.lerped) ref.current.lerped = new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"]().copy(ref.current.translation());
+                        const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())));
+                        ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)));
+                    }
+                }["Band.useFrame"]);
+                curve.points[0].copy(j3.current.translation());
+                curve.points[1].copy(j2.current.lerped);
+                curve.points[2].copy(j1.current.lerped);
+                curve.points[3].copy(fixed.current.translation());
+                band.current.geometry.setPoints(curve.getPoints(32));
+                ang.copy(card.current.angvel());
+                rot.copy(card.current.rotation());
+                card.current.setAngvel({
+                    x: ang.x,
+                    y: ang.y - rot.y * 0.25,
+                    z: ang.z
+                });
+            }
+        }
+    }["Band.useFrame"]);
+    curve.curveType = 'chordal';
+    texture.wrapS = texture.wrapT = __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["RepeatWrapping"];
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("group", {
+                position: [
+                    0,
+                    4,
+                    0
+                ],
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["RigidBody"], {
+                        ref: fixed,
+                        ...segmentProps,
+                        type: 'fixed'
+                    }, void 0, false, {
+                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                        lineNumber: 123,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["RigidBody"], {
+                        position: [
+                            0.5,
+                            0,
+                            0
+                        ],
+                        ref: j1,
+                        ...segmentProps,
+                        type: 'dynamic',
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["BallCollider"], {
+                            args: [
+                                0.1
+                            ]
+                        }, void 0, false, {
+                            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                            lineNumber: 124,
+                            columnNumber: 113
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                        lineNumber: 124,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["RigidBody"], {
+                        position: [
+                            1,
+                            0,
+                            0
+                        ],
+                        ref: j2,
+                        ...segmentProps,
+                        type: 'dynamic',
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["BallCollider"], {
+                            args: [
+                                0.1
+                            ]
+                        }, void 0, false, {
+                            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                            lineNumber: 125,
+                            columnNumber: 111
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                        lineNumber: 125,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["RigidBody"], {
+                        position: [
+                            1.5,
+                            0,
+                            0
+                        ],
+                        ref: j3,
+                        ...segmentProps,
+                        type: 'dynamic',
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["BallCollider"], {
+                            args: [
+                                0.1
+                            ]
+                        }, void 0, false, {
+                            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                            lineNumber: 126,
+                            columnNumber: 113
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                        lineNumber: 126,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["RigidBody"], {
+                        position: [
+                            2,
+                            0,
+                            0
+                        ],
+                        ref: card,
+                        ...segmentProps,
+                        type: dragged ? 'kinematicPosition' : 'dynamic',
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["CuboidCollider"], {
+                                args: [
+                                    0.8,
+                                    1.125,
+                                    0.01
+                                ]
+                            }, void 0, false, {
+                                fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                                lineNumber: 128,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("group", {
+                                scale: 2.6,
+                                position: [
+                                    0,
+                                    -1.2,
+                                    -0.05
+                                ],
+                                onPointerOver: ()=>hover(true),
+                                onPointerOut: ()=>hover(false),
+                                onPointerUp: (e)=>{
+                                    e.target.releasePointerCapture(e.pointerId);
+                                    drag(false);
+                                },
+                                onPointerDown: (e)=>{
+                                    e.target.setPointerCapture(e.pointerId);
+                                    drag(new __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"]().copy(e.point).sub(vec.copy(card.current.translation())));
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mesh", {
+                                        geometry: nodes.card.geometry,
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meshPhysicalMaterial", {
+                                            map: ccLogo,
+                                            "map-anisotropy": 16,
+                                            clearcoat: 1,
+                                            clearcoatRoughness: 0.15,
+                                            roughness: 0.9,
+                                            metalness: 0.8
+                                        }, void 0, false, {
+                                            fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                                            lineNumber: 131,
+                                            columnNumber: 15
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                                        lineNumber: 130,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mesh", {
+                                        geometry: nodes.clip.geometry,
+                                        material: materials.metal,
+                                        "material-roughness": 0.3
+                                    }, void 0, false, {
+                                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                                        lineNumber: 133,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mesh", {
+                                        geometry: nodes.clamp.geometry,
+                                        material: materials.metal
+                                    }, void 0, false, {
+                                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                                        lineNumber: 134,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                                lineNumber: 129,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                        lineNumber: 127,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                lineNumber: 122,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mesh", {
+                ref: band,
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meshLineGeometry", {}, void 0, false, {
+                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                        lineNumber: 139,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meshLineMaterial", {
+                        color: "white",
+                        depthTest: false,
+                        resolution: isSmall ? [
+                            1000,
+                            2000
+                        ] : [
+                            1000,
+                            1000
+                        ],
+                        useMap: true,
+                        map: texture,
+                        repeat: [
+                            -4,
+                            1
+                        ],
+                        lineWidth: 1
+                    }, void 0, false, {
+                        fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                        lineNumber: 140,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/crosscertv0/components/landing-hero.tsx",
+                lineNumber: 138,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true);
+}
+_s(Band, "DITPdbAe/Aa0NPx5fEl/y8rp3cA=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Gltf$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGLTF"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Texture$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTexture"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Texture$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTexture"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useRopeJoint"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useRopeJoint"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useRopeJoint"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$rapier$2f$dist$2f$react$2d$three$2d$rapier$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useSphericalJoint"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$events$2d$f8cd670d$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__D__as__useFrame$3e$__["useFrame"]
+    ];
+});
+_c1 = Band;
+function LandingHero() {
+    _s1();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const logoRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const [skew, setSkew] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
@@ -405,19 +971,19 @@ function LandingHero() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                                    lineNumber: 41,
+                                                    lineNumber: 178,
                                                     columnNumber: 19
                                                 }, this),
                                                 "CROSSCERT"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                            lineNumber: 40,
+                                            lineNumber: 177,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                        lineNumber: 39,
+                                        lineNumber: 176,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -425,7 +991,7 @@ function LandingHero() {
                                         children: "Smart events start with automation."
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                        lineNumber: 45,
+                                        lineNumber: 182,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -433,13 +999,13 @@ function LandingHero() {
                                         children: "Organize, monitor attendance and generate verified certificates without the manual work."
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                        lineNumber: 48,
+                                        lineNumber: 185,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                lineNumber: 38,
+                                lineNumber: 175,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -455,13 +1021,13 @@ function LandingHero() {
                                                 className: "w-5 h-5 ml-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                                lineNumber: 60,
+                                                lineNumber: 197,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                        lineNumber: 54,
+                                        lineNumber: 191,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -472,13 +1038,13 @@ function LandingHero() {
                                         children: "Explore Events"
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 199,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                lineNumber: 53,
+                                lineNumber: 190,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -489,7 +1055,7 @@ function LandingHero() {
                                         children: "Trusted by leading institutions"
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                        lineNumber: 74,
+                                        lineNumber: 211,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -500,7 +1066,7 @@ function LandingHero() {
                                                 children: "HCDC Campus-Wide Events"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                                lineNumber: 76,
+                                                lineNumber: 213,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -508,7 +1074,7 @@ function LandingHero() {
                                                 children: "Departmental Events"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                                lineNumber: 77,
+                                                lineNumber: 214,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -516,25 +1082,25 @@ function LandingHero() {
                                                 children: "VPAA Seminars"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                                lineNumber: 78,
+                                                lineNumber: 215,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                        lineNumber: 75,
+                                        lineNumber: 212,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                lineNumber: 73,
+                                lineNumber: 210,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                        lineNumber: 37,
+                        lineNumber: 174,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -550,67 +1116,70 @@ function LandingHero() {
                                     className: "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full blur-3xl opacity-80 glow-cycle"
                                 }, void 0, false, {
                                     fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                    lineNumber: 93,
+                                    lineNumber: 230,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "relative w-5/6 aspect-square transition-transform duration-150 ease-out",
-                                    style: {
-                                        transform: `skewX(${skew.x}deg) skewY(${skew.y}deg)`,
-                                        willChange: 'transform'
-                                    },
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                        src: "/crosscert-logo.png",
-                                        alt: "CROSSCERT logo",
-                                        fill: true,
-                                        className: "object-contain select-none",
-                                        priority: true
+                                    className: "relative w-full max-w-2xl",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Lanyard, {
+                                        position: [
+                                            0,
+                                            0,
+                                            16
+                                        ],
+                                        gravity: [
+                                            0,
+                                            -40,
+                                            0
+                                        ]
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 233,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 232,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                            lineNumber: 85,
+                            lineNumber: 222,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                        lineNumber: 84,
+                        lineNumber: 221,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-                lineNumber: 35,
+                lineNumber: 172,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-            lineNumber: 34,
+            lineNumber: 171,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/crosscertv0/components/landing-hero.tsx",
-        lineNumber: 33,
+        lineNumber: 170,
         columnNumber: 5
     }, this);
 }
-_s(LandingHero, "5L7t6mWfCIf4/Nfw5l52OSsYBQI=", false, function() {
+_s1(LandingHero, "5L7t6mWfCIf4/Nfw5l52OSsYBQI=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
 });
-_c = LandingHero;
-var _c;
-__turbopack_context__.k.register(_c, "LandingHero");
+_c2 = LandingHero;
+var _c, _c1, _c2;
+__turbopack_context__.k.register(_c, "Lanyard");
+__turbopack_context__.k.register(_c1, "Band");
+__turbopack_context__.k.register(_c2, "LandingHero");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
