@@ -561,7 +561,7 @@ function AdminEvents() {
         columnNumber: 5
     }, this);
 }
-_s(AdminEvents, "z4LvqHaKI2H/QI6VS+7oXD8qSro=", false, function() {
+_s(AdminEvents, "wVQieci7JBXohszxT5Bxibjlhg0=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];

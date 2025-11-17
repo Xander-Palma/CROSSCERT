@@ -275,15 +275,45 @@ function CreateEventPage() {
     const isStep1Valid = eventName && eventDescription && eventDate && startTime && endTime && venue;
     const isStep2Valid = !hasCapacityLimit || capacity;
     const isStep3Valid = selectedTheme;
-    const handleFileUpload = (e)=>{
+    // Helper: compress an image file to base64 using canvas
+    async function compressImageToBase64(file, opts) {
+        const { maxWidth = 1200, maxHeight = 1200, quality = 0.7 } = opts || {};
+        const bitmap = await createImageBitmap(file);
+        const ratio = Math.min(maxWidth / bitmap.width, maxHeight / bitmap.height, 1);
+        const targetW = Math.round(bitmap.width * ratio);
+        const targetH = Math.round(bitmap.height * ratio);
+        const canvas = document.createElement('canvas');
+        canvas.width = targetW;
+        canvas.height = targetH;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(bitmap, 0, 0, targetW, targetH);
+        // Prefer image/jpeg unless original is png with transparency
+        const isPNG = file.type === 'image/png';
+        const mime = isPNG ? 'image/png' : 'image/jpeg';
+        // For PNG we skip quality param (ignored by browsers), for JPEG we use it
+        const dataUrl = canvas.toDataURL(mime, mime === 'image/jpeg' ? quality : undefined);
+        return dataUrl;
+    }
+    const handleFileUpload = async (e)=>{
         const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event)=>{
-                setCoverImage(event.target?.result);
-            };
-            reader.readAsDataURL(file);
+        if (!file) return;
+        // Basic guard: ignore files over ~5MB to keep UX smooth
+        if (file.size > 5 * 1024 * 1024) {
+            // Try stronger compression for very large files
+            const base64 = await compressImageToBase64(file, {
+                maxWidth: 1400,
+                maxHeight: 1400,
+                quality: 0.6
+            });
+            setCoverImage(base64);
+            return;
         }
+        const base64 = await compressImageToBase64(file, {
+            maxWidth: 1200,
+            maxHeight: 1200,
+            quality: 0.7
+        });
+        setCoverImage(base64);
     };
     const handleCreateEvent = async ()=>{
         setIsLoading(true);
@@ -333,14 +363,14 @@ function CreateEventPage() {
                                 className: "w-4 h-4"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 127,
+                                lineNumber: 156,
                                 columnNumber: 11
                             }, this),
                             "Back"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 123,
+                        lineNumber: 152,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -348,7 +378,7 @@ function CreateEventPage() {
                         children: "Create New Event"
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 130,
+                        lineNumber: 159,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -356,13 +386,13 @@ function CreateEventPage() {
                         children: "Follow the steps below to create your event"
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 131,
+                        lineNumber: 160,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                lineNumber: 122,
+                lineNumber: 151,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -382,25 +412,25 @@ function CreateEventPage() {
                                 children: step
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 138,
+                                lineNumber: 167,
                                 columnNumber: 13
                             }, this),
                             step < 4 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: `h-1 w-12 ${step < currentStep ? 'bg-primary' : 'bg-muted'}`
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 152,
+                                lineNumber: 181,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, step, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 137,
+                        lineNumber: 166,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                lineNumber: 135,
+                lineNumber: 164,
                 columnNumber: 7
             }, this),
             currentStep === 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -411,7 +441,7 @@ function CreateEventPage() {
                         children: "Step 1: Event Details"
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 161,
+                        lineNumber: 190,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -427,7 +457,7 @@ function CreateEventPage() {
                                                 children: "Event Name *"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 167,
+                                                lineNumber: 196,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -437,13 +467,13 @@ function CreateEventPage() {
                                                 className: "mt-1 bg-background border-border text-foreground"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 168,
+                                                lineNumber: 197,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 166,
+                                        lineNumber: 195,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -453,7 +483,7 @@ function CreateEventPage() {
                                                 children: "Event Description *"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 177,
+                                                lineNumber: 206,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -463,13 +493,13 @@ function CreateEventPage() {
                                                 className: "mt-1 bg-background border-border text-foreground min-h-24"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 178,
+                                                lineNumber: 207,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 176,
+                                        lineNumber: 205,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -479,7 +509,7 @@ function CreateEventPage() {
                                                 children: "Date *"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 187,
+                                                lineNumber: 216,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -489,13 +519,13 @@ function CreateEventPage() {
                                                 className: "mt-1 bg-background border-border text-foreground"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 188,
+                                                lineNumber: 217,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 186,
+                                        lineNumber: 215,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -508,7 +538,7 @@ function CreateEventPage() {
                                                         children: "Start Time *"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 198,
+                                                        lineNumber: 227,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -518,13 +548,13 @@ function CreateEventPage() {
                                                         className: "mt-1 bg-background border-border text-foreground"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 199,
+                                                        lineNumber: 228,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 197,
+                                                lineNumber: 226,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -534,7 +564,7 @@ function CreateEventPage() {
                                                         children: "End Time *"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 207,
+                                                        lineNumber: 236,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -544,19 +574,19 @@ function CreateEventPage() {
                                                         className: "mt-1 bg-background border-border text-foreground"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 208,
+                                                        lineNumber: 237,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 206,
+                                                lineNumber: 235,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 196,
+                                        lineNumber: 225,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -566,7 +596,7 @@ function CreateEventPage() {
                                                 children: "Timezone"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 218,
+                                                lineNumber: 247,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -576,13 +606,13 @@ function CreateEventPage() {
                                                 className: "mt-1 bg-background border-border text-foreground"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 219,
+                                                lineNumber: 248,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 217,
+                                        lineNumber: 246,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -592,7 +622,7 @@ function CreateEventPage() {
                                                 children: "Event Category"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 228,
+                                                lineNumber: 257,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -608,7 +638,7 @@ function CreateEventPage() {
                                                         children: "HCDC Wide Event"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 237,
+                                                        lineNumber: 266,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -616,7 +646,7 @@ function CreateEventPage() {
                                                         children: "CET - College of Engineering and Technology"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 238,
+                                                        lineNumber: 267,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -624,7 +654,7 @@ function CreateEventPage() {
                                                         children: "STE - School of Teacher Education"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 239,
+                                                        lineNumber: 268,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -632,7 +662,7 @@ function CreateEventPage() {
                                                         children: "SBME - School of Business & Management"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 240,
+                                                        lineNumber: 269,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -640,7 +670,7 @@ function CreateEventPage() {
                                                         children: "HUSOCOM - College of Arts & Sciences"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 241,
+                                                        lineNumber: 270,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -648,7 +678,7 @@ function CreateEventPage() {
                                                         children: "CHATME - College of Hospitality & Tourism Management"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 242,
+                                                        lineNumber: 271,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -656,7 +686,7 @@ function CreateEventPage() {
                                                         children: "COME - College of Maritime Education"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 243,
+                                                        lineNumber: 272,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -664,25 +694,25 @@ function CreateEventPage() {
                                                         children: "CCJE - College of Criminal Justice Education"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 244,
+                                                        lineNumber: 273,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 229,
+                                                lineNumber: 258,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 227,
+                                        lineNumber: 256,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 165,
+                                lineNumber: 194,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -695,7 +725,7 @@ function CreateEventPage() {
                                                 children: "Cover Image"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 252,
+                                                lineNumber: 281,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -709,7 +739,7 @@ function CreateEventPage() {
                                                         id: "cover-upload"
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 254,
+                                                        lineNumber: 283,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -721,7 +751,7 @@ function CreateEventPage() {
                                                             className: "w-full h-40 object-cover rounded"
                                                         }, void 0, false, {
                                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                            lineNumber: 263,
+                                                            lineNumber: 292,
                                                             columnNumber: 23
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "space-y-2",
@@ -730,7 +760,7 @@ function CreateEventPage() {
                                                                     className: "w-8 h-8 mx-auto text-muted-foreground"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                    lineNumber: 266,
+                                                                    lineNumber: 295,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -738,30 +768,30 @@ function CreateEventPage() {
                                                                     children: "Click to upload image"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                    lineNumber: 267,
+                                                                    lineNumber: 296,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                            lineNumber: 265,
+                                                            lineNumber: 294,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 261,
+                                                        lineNumber: 290,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 253,
+                                                lineNumber: 282,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 251,
+                                        lineNumber: 280,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -771,7 +801,7 @@ function CreateEventPage() {
                                                 children: "Speakers"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 275,
+                                                lineNumber: 304,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -781,13 +811,13 @@ function CreateEventPage() {
                                                 className: "mt-1 bg-background border-border text-foreground"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 276,
+                                                lineNumber: 305,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 274,
+                                        lineNumber: 303,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -797,7 +827,7 @@ function CreateEventPage() {
                                                 children: "Venue / Location *"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 285,
+                                                lineNumber: 314,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -812,12 +842,12 @@ function CreateEventPage() {
                                                             className: "bg-background border-border text-foreground"
                                                         }, void 0, false, {
                                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                            lineNumber: 288,
+                                                            lineNumber: 317,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 287,
+                                                        lineNumber: 316,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -828,36 +858,36 @@ function CreateEventPage() {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                            lineNumber: 296,
+                                                            lineNumber: 325,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 295,
+                                                        lineNumber: 324,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 286,
+                                                lineNumber: 315,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 284,
+                                        lineNumber: 313,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 250,
+                                lineNumber: 279,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 163,
+                        lineNumber: 192,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -869,7 +899,7 @@ function CreateEventPage() {
                                 children: "Cancel"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 304,
+                                lineNumber: 333,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -879,19 +909,19 @@ function CreateEventPage() {
                                 children: "Next Step"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 310,
+                                lineNumber: 339,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 303,
+                        lineNumber: 332,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                lineNumber: 160,
+                lineNumber: 189,
                 columnNumber: 9
             }, this),
             currentStep === 2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -902,7 +932,7 @@ function CreateEventPage() {
                         children: "Step 2: Event Options"
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 324,
+                        lineNumber: 353,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -918,7 +948,7 @@ function CreateEventPage() {
                                                 children: "Limit Capacity"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 329,
+                                                lineNumber: 358,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -926,13 +956,13 @@ function CreateEventPage() {
                                                 children: "Restrict number of participants"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 330,
+                                                lineNumber: 359,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 328,
+                                        lineNumber: 357,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -945,18 +975,18 @@ function CreateEventPage() {
                                             className: `inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${hasCapacityLimit ? 'translate-x-7' : 'translate-x-1'}`
                                         }, void 0, false, {
                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                            lineNumber: 341,
+                                            lineNumber: 370,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 332,
+                                        lineNumber: 361,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 327,
+                                lineNumber: 356,
                                 columnNumber: 13
                             }, this),
                             hasCapacityLimit && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -966,7 +996,7 @@ function CreateEventPage() {
                                         children: "Maximum Capacity"
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 351,
+                                        lineNumber: 380,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -978,13 +1008,13 @@ function CreateEventPage() {
                                         className: "mt-2 bg-background border-border text-foreground"
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 352,
+                                        lineNumber: 381,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 350,
+                                lineNumber: 379,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -997,7 +1027,7 @@ function CreateEventPage() {
                                                 children: "Require Approval"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 365,
+                                                lineNumber: 394,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1005,13 +1035,13 @@ function CreateEventPage() {
                                                 children: "Approve registrations manually"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 366,
+                                                lineNumber: 395,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 364,
+                                        lineNumber: 393,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1021,18 +1051,18 @@ function CreateEventPage() {
                                             className: `inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${requireApproval ? 'translate-x-7' : 'translate-x-1'}`
                                         }, void 0, false, {
                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                            lineNumber: 374,
+                                            lineNumber: 403,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 368,
+                                        lineNumber: 397,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 363,
+                                lineNumber: 392,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1045,7 +1075,7 @@ function CreateEventPage() {
                                                 children: "Paid Event"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 384,
+                                                lineNumber: 413,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1053,13 +1083,13 @@ function CreateEventPage() {
                                                 children: "Charge ticket price"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 385,
+                                                lineNumber: 414,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 383,
+                                        lineNumber: 412,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1072,18 +1102,18 @@ function CreateEventPage() {
                                             className: `inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${isPaidEvent ? 'translate-x-7' : 'translate-x-1'}`
                                         }, void 0, false, {
                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                            lineNumber: 396,
+                                            lineNumber: 425,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 387,
+                                        lineNumber: 416,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 382,
+                                lineNumber: 411,
                                 columnNumber: 13
                             }, this),
                             isPaidEvent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1093,7 +1123,7 @@ function CreateEventPage() {
                                         children: "Ticket Price (PHP)"
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 406,
+                                        lineNumber: 435,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -1105,13 +1135,13 @@ function CreateEventPage() {
                                         className: "mt-2 bg-background border-border text-foreground"
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 407,
+                                        lineNumber: 436,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 405,
+                                lineNumber: 434,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1124,7 +1154,7 @@ function CreateEventPage() {
                                                 children: "Public Event"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 420,
+                                                lineNumber: 449,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1132,13 +1162,13 @@ function CreateEventPage() {
                                                 children: isPublic ? 'Visible to everyone' : 'Private/Invite only'
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 421,
+                                                lineNumber: 450,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 419,
+                                        lineNumber: 448,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1148,24 +1178,24 @@ function CreateEventPage() {
                                             className: `inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${isPublic ? 'translate-x-7' : 'translate-x-1'}`
                                         }, void 0, false, {
                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                            lineNumber: 429,
+                                            lineNumber: 458,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 423,
+                                        lineNumber: 452,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 418,
+                                lineNumber: 447,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 326,
+                        lineNumber: 355,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1177,7 +1207,7 @@ function CreateEventPage() {
                                 children: "Back"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 439,
+                                lineNumber: 468,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1187,19 +1217,19 @@ function CreateEventPage() {
                                 children: "Next Step"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 445,
+                                lineNumber: 474,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 438,
+                        lineNumber: 467,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                lineNumber: 323,
+                lineNumber: 352,
                 columnNumber: 9
             }, this),
             currentStep === 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -1210,7 +1240,7 @@ function CreateEventPage() {
                         children: "Step 3: Choose Theme"
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 459,
+                        lineNumber: 488,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1218,7 +1248,7 @@ function CreateEventPage() {
                         children: "Select a theme for your event. You can customize it later."
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 460,
+                        lineNumber: 489,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1231,7 +1261,7 @@ function CreateEventPage() {
                                         className: `w-full h-24 ${theme.color} rounded-lg mb-2`
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 473,
+                                        lineNumber: 502,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1239,7 +1269,7 @@ function CreateEventPage() {
                                         children: theme.name
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 474,
+                                        lineNumber: 503,
                                         columnNumber: 17
                                     }, this),
                                     selectedTheme === theme.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1249,23 +1279,23 @@ function CreateEventPage() {
                                             children: "✓"
                                         }, void 0, false, {
                                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                            lineNumber: 477,
+                                            lineNumber: 506,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 476,
+                                        lineNumber: 505,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, theme.id, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 464,
+                                lineNumber: 493,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 462,
+                        lineNumber: 491,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1276,7 +1306,7 @@ function CreateEventPage() {
                                 children: "Live Preview"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 485,
+                                lineNumber: 514,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1289,7 +1319,7 @@ function CreateEventPage() {
                                                 children: eventName || 'Your Event Title'
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 488,
+                                                lineNumber: 517,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1297,13 +1327,13 @@ function CreateEventPage() {
                                                 children: venue || 'Event Venue'
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 489,
+                                                lineNumber: 518,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 487,
+                                        lineNumber: 516,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1315,19 +1345,19 @@ function CreateEventPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 491,
+                                        lineNumber: 520,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 486,
+                                lineNumber: 515,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 484,
+                        lineNumber: 513,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1339,7 +1369,7 @@ function CreateEventPage() {
                                 children: "Back"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 496,
+                                lineNumber: 525,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1348,19 +1378,19 @@ function CreateEventPage() {
                                 children: "Review & Create"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 502,
+                                lineNumber: 531,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 495,
+                        lineNumber: 524,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                lineNumber: 458,
+                lineNumber: 487,
                 columnNumber: 9
             }, this),
             currentStep === 4 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -1371,7 +1401,7 @@ function CreateEventPage() {
                         children: "Step 4: Review & Create"
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 515,
+                        lineNumber: 544,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1388,7 +1418,7 @@ function CreateEventPage() {
                                                 children: "Event Name"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 520,
+                                                lineNumber: 549,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1396,13 +1426,13 @@ function CreateEventPage() {
                                                 children: eventName
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 521,
+                                                lineNumber: 550,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 519,
+                                        lineNumber: 548,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1413,7 +1443,7 @@ function CreateEventPage() {
                                                 children: "Venue"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 524,
+                                                lineNumber: 553,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1421,13 +1451,13 @@ function CreateEventPage() {
                                                 children: venue
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 525,
+                                                lineNumber: 554,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 523,
+                                        lineNumber: 552,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1438,7 +1468,7 @@ function CreateEventPage() {
                                                 children: "Date & Time"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 528,
+                                                lineNumber: 557,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1452,13 +1482,13 @@ function CreateEventPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 529,
+                                                lineNumber: 558,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 527,
+                                        lineNumber: 556,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1469,7 +1499,7 @@ function CreateEventPage() {
                                                 children: "Capacity"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 532,
+                                                lineNumber: 561,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1477,19 +1507,19 @@ function CreateEventPage() {
                                                 children: hasCapacityLimit ? capacity : 'Unlimited'
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 533,
+                                                lineNumber: 562,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 531,
+                                        lineNumber: 560,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 518,
+                                lineNumber: 547,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1499,7 +1529,7 @@ function CreateEventPage() {
                                         children: "Event Preview"
                                     }, void 0, false, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 538,
+                                        lineNumber: 567,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1511,7 +1541,7 @@ function CreateEventPage() {
                                                 className: "w-full h-40 object-cover"
                                             }, void 0, false, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 541,
+                                                lineNumber: 570,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1522,7 +1552,7 @@ function CreateEventPage() {
                                                         children: eventName
                                                     }, void 0, false, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 544,
+                                                        lineNumber: 573,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1532,20 +1562,20 @@ function CreateEventPage() {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                lineNumber: 546,
+                                                                lineNumber: 575,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: eventDate
                                                             }, void 0, false, {
                                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                lineNumber: 547,
+                                                                lineNumber: 576,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 545,
+                                                        lineNumber: 574,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1555,7 +1585,7 @@ function CreateEventPage() {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                lineNumber: 550,
+                                                                lineNumber: 579,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1566,13 +1596,13 @@ function CreateEventPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                lineNumber: 551,
+                                                                lineNumber: 580,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 549,
+                                                        lineNumber: 578,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1582,20 +1612,20 @@ function CreateEventPage() {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                lineNumber: 554,
+                                                                lineNumber: 583,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: venue
                                                             }, void 0, false, {
                                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                lineNumber: 555,
+                                                                lineNumber: 584,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 553,
+                                                        lineNumber: 582,
                                                         columnNumber: 19
                                                     }, this),
                                                     hasCapacityLimit && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1605,7 +1635,7 @@ function CreateEventPage() {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                lineNumber: 559,
+                                                                lineNumber: 588,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1616,37 +1646,37 @@ function CreateEventPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                                lineNumber: 560,
+                                                                lineNumber: 589,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                        lineNumber: 558,
+                                                        lineNumber: 587,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                                lineNumber: 543,
+                                                lineNumber: 572,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                        lineNumber: 539,
+                                        lineNumber: 568,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 537,
+                                lineNumber: 566,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 517,
+                        lineNumber: 546,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1656,12 +1686,12 @@ function CreateEventPage() {
                             children: "By creating this event, you agree to our terms and conditions. Events are subject to moderation."
                         }, void 0, false, {
                             fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                            lineNumber: 569,
+                            lineNumber: 598,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 568,
+                        lineNumber: 597,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1674,7 +1704,7 @@ function CreateEventPage() {
                                 children: "Back"
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 575,
+                                lineNumber: 604,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$crosscertv0$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1684,25 +1714,25 @@ function CreateEventPage() {
                                 children: isLoading ? 'Creating Event...' : 'Create Event'
                             }, void 0, false, {
                                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                                lineNumber: 582,
+                                lineNumber: 611,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                        lineNumber: 574,
+                        lineNumber: 603,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-                lineNumber: 514,
+                lineNumber: 543,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/crosscertv0/app/admin/events/create/page.tsx",
-        lineNumber: 120,
+        lineNumber: 149,
         columnNumber: 5
     }, this);
 }

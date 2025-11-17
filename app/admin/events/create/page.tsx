@@ -65,15 +65,44 @@ export default function CreateEventPage() {
   const isStep2Valid = !hasCapacityLimit || capacity
   const isStep3Valid = selectedTheme
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Helper: compress an image file to base64 using canvas
+  async function compressImageToBase64(file: File, opts?: { maxWidth?: number; maxHeight?: number; quality?: number }): Promise<string> {
+    const { maxWidth = 1200, maxHeight = 1200, quality = 0.7 } = opts || {}
+
+    const bitmap = await createImageBitmap(file)
+    const ratio = Math.min(maxWidth / bitmap.width, maxHeight / bitmap.height, 1)
+    const targetW = Math.round(bitmap.width * ratio)
+    const targetH = Math.round(bitmap.height * ratio)
+
+    const canvas = document.createElement('canvas')
+    canvas.width = targetW
+    canvas.height = targetH
+    const ctx = canvas.getContext('2d')!
+    ctx.drawImage(bitmap, 0, 0, targetW, targetH)
+
+    // Prefer image/jpeg unless original is png with transparency
+    const isPNG = file.type === 'image/png'
+    const mime = isPNG ? 'image/png' : 'image/jpeg'
+    // For PNG we skip quality param (ignored by browsers), for JPEG we use it
+    const dataUrl = canvas.toDataURL(mime, mime === 'image/jpeg' ? quality : undefined)
+
+    return dataUrl
+  }
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        setCoverImage(event.target?.result as string)
-      }
-      reader.readAsDataURL(file)
+    if (!file) return
+
+    // Basic guard: ignore files over ~5MB to keep UX smooth
+    if (file.size > 5 * 1024 * 1024) {
+      // Try stronger compression for very large files
+      const base64 = await compressImageToBase64(file, { maxWidth: 1400, maxHeight: 1400, quality: 0.6 })
+      setCoverImage(base64)
+      return
     }
+
+    const base64 = await compressImageToBase64(file, { maxWidth: 1200, maxHeight: 1200, quality: 0.7 })
+    setCoverImage(base64)
   }
 
   const handleCreateEvent = async () => {
