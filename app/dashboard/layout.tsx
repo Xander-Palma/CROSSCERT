@@ -11,9 +11,9 @@ export default function DashboardLayout({
   return (
     <div className="flex min-h-screen bg-background">
       <Sidebar />
-      <div className="flex-1 lg:ml-64">
+      <div className="flex-1 w-full lg:ml-64 min-w-0">
         <TopBar />
-        <main className="p-4 sm:p-6 lg:p-8">
+        <main className="p-3 sm:p-4 md:p-6 lg:p-8 max-w-full overflow-x-hidden">
           {children}
         </main>
       </div>

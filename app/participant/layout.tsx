@@ -24,11 +24,11 @@ export default function ParticipantLayout({
   if (!mounted) return null
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-background overflow-hidden">
       <ParticipantSidebar />
-      <div className="flex-1 flex flex-col overflow-hidden md:ml-64">
+      <div className="flex-1 flex flex-col overflow-hidden md:ml-64 w-full min-w-0">
         <ParticipantTopbar />
-        <main className="flex-1 overflow-auto">
+        <main className="flex-1 overflow-auto p-3 sm:p-4 md:p-6 lg:p-8 max-w-full">
           {children}
         </main>
       </div>

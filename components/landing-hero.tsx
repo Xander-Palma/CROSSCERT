@@ -28,7 +28,7 @@ type LanyardProps = {
 
 function Lanyard({ position = [0, 0, 18], gravity = [0, -40, 0], fov = 20, transparent = true }: LanyardProps) {
   return (
-    <div className="relative z-0 w-full h-[36rem] lg:h-[44rem] flex justify-center items-center">
+    <div className="relative z-0 w-full h-[24rem] sm:h-[28rem] md:h-[32rem] lg:h-[36rem] xl:h-[44rem] flex justify-center items-center">
       <Canvas camera={{ position, fov }} gl={{ alpha: transparent }} onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}>
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={1 / 60}>
@@ -167,39 +167,39 @@ export function LandingHero() {
   }
 
   return (
-    <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="inline-block bg-accent/10 px-4 py-2 rounded-full">
-                <span className="text-accent font-semibold text-sm flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
+          <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="inline-block bg-accent/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+                <span className="text-accent font-semibold text-xs sm:text-sm flex items-center gap-2">
+                  <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
                   CROSSCERT
                 </span>
               </div>
-              <h1 className="text-5xl sm:text-6xl font-bold text-foreground leading-tight text-balance">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
                 Smart events start with automation.
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed text-balance">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed text-balance">
                 Organize, monitor attendance and generate verified certificates without the manual work.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground text-sm sm:text-base w-full sm:w-auto"
                 onClick={() => router.push('/auth/signin')}
               >
                 Create an Event
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-border"
+                className="border-border text-sm sm:text-base w-full sm:w-auto"
                 onClick={() => router.push('/discover')}
               >
                 Explore Events
@@ -207,12 +207,12 @@ export function LandingHero() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="pt-8 border-t border-border">
-              <p className="text-sm text-muted-foreground mb-4">Trusted by leading institutions</p>
-              <div className="flex flex-wrap gap-8 items-center opacity-60">
-                <span className="font-semibold text-foreground">HCDC Campus-Wide Events</span>
-                <span className="font-semibold text-foreground">Departmental Events</span>
-                <span className="font-semibold text-foreground">VPAA Seminars</span>
+            <div className="pt-6 sm:pt-8 border-t border-border">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">Trusted by leading institutions</p>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 md:gap-8 items-start sm:items-center opacity-60">
+                <span className="font-semibold text-foreground text-sm sm:text-base">HCDC Campus-Wide Events</span>
+                <span className="font-semibold text-foreground text-sm sm:text-base">Departmental Events</span>
+                <span className="font-semibold text-foreground text-sm sm:text-base">VPAA Seminars</span>
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@
 Views for Participants app.
 """
 from rest_framework import viewsets
+from rest_framework.response import Response
 from .models import Evaluation
 from .serializers import EvaluationSerializer
 

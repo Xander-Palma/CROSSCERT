@@ -122,8 +122,57 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Prevent zoom issues and ensure proper scaling */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Better font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* Responsive images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  /* Responsive containers */
+  .container-responsive {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-responsive {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-responsive {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-responsive {
+      max-width: 1280px;
+    }
+  }
+  @media (min-width: 1536px) {
+    .container-responsive {
+      max-width: 1536px;
+    }
   }
 }
 
@@ -146,6 +195,45 @@
           mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
   -webkit-mask-size: 100% 100%;
           mask-size: 100% 100%;
+}
+
+/* Responsive breakpoints for better control */
+@media (max-width: 640px) {
+  /* Extra small devices */
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Tablets */
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Desktop and large screens */
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Prevent text size adjustment on zoom for better UX */
+@media (max-width: 768px) {
+  body {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+/* Ensure proper scaling on very large screens */
+@media (min-width: 1920px) {
+  .container-responsive {
+    max-width: 1600px;
+  }
 }
 
 /* stylelint-enable at-rule-no-unknown */
